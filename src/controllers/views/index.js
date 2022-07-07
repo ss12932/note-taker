@@ -1,10 +1,10 @@
+const path = require('path');
+
 const getIndexMarkupFile = (req, res) => {
-  // controller logic
-  res.json({ message: 'getIndexMarkupFile controller has been reached' });
+  res.sendFile(path.join(__dirname, '../../../public/index.html'));
 };
 const getNotesMarkupFile = (req, res) => {
-  // controller logic
-  res.json({ message: 'getNotesMarkupFile controller has been reached' });
+  res.sendFile(path.join(__dirname, '../../../public/index.html'));
 };
 const deleteNote = (req, res) => {
   // controller logic

@@ -2,13 +2,13 @@ const { Router } = require('express');
 const router = Router();
 
 const {
-  getIndexMarkup,
-  getNotesMarkup,
+  getIndexMarkupFile,
+  getNotesMarkupFile,
   deleteNote,
 } = require('../../controllers/views');
 
-router.get('/', getIndexMarkup);
-router.post('/notes', getNotesMarkup);
+router.get('/', getIndexMarkupFile);
+router.post('/notes', getNotesMarkupFile);
 router.delete('/:id', deleteNote);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const {
 } = require('../../controllers/views');
 
 router.get('/', getIndexMarkupFile);
-router.post('/notes', getNotesMarkupFile);
+router.get('/notes', getNotesMarkupFile);
 router.delete('/:id', deleteNote);
 
 module.exports = router;

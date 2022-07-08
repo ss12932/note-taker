@@ -1,6 +1,7 @@
+const path = require('path');
+
 const getAllNotes = (req, res) => {
-  // controller logic
-  res.json({ message: 'getAllNotes controller has been reached' });
+  return res.sendFile(path.join(__dirname, '../../db/db.json'));
 };
 const postNewNote = (req, res) => {
   // controller logic

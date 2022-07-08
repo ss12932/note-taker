@@ -9,6 +9,5 @@ const {
 
 router.get('/', getIndexMarkupFile);
 router.get('/notes', getNotesMarkupFile);
-router.delete('/:id', deleteNote);
 
 module.exports = router;

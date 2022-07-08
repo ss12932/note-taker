@@ -7,7 +7,7 @@ const getAllNotes = (req, res) => {
 };
 const postNewNote = (req, res) => {
   const uid = new ShortUniqueId({ length: 10 });
-  let notes = req.body;
+  const notes = req.body;
   const notesArray = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../../db/db.json'))
   );
@@ -17,10 +17,19 @@ const postNewNote = (req, res) => {
     path.join(__dirname, '../../db/db.json'),
     JSON.stringify(notesArray)
   );
-  res.json(notesArray);
+  res.json({ success: true, message: 'New note successfully saved' });
 };
 const deleteNote = (req, res) => {
-  res.json({ message: 'deleteNote controller has been reached' });
+  const removedNoteId = req.params.id;
+  const notesArray = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../../db/db.json'))
+  );
+  const filterNotesArray = notesArray.filter((el) => el.id !== removedNoteId);
+  fs.writeFileSync(
+    path.join(__dirname, '../../db/db.json'),
+    JSON.stringify(filterNotesArray)
+  );
+  res.json({ success: true, message: 'Note has been successfully deleted' });
 };
 module.exports = {
   getAllNotes,

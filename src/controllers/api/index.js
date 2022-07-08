@@ -1,14 +1,25 @@
 const path = require('path');
+const fs = require('fs');
+const ShortUniqueId = require('short-unique-id');
 
 const getAllNotes = (req, res) => {
-  return res.sendFile(path.join(__dirname, '../../db/db.json'));
+  res.sendFile(path.join(__dirname, '../../db/db.json'));
 };
 const postNewNote = (req, res) => {
-  // controller logic
-  res.json({ message: 'postNewNote controller has been reached' });
+  const uid = new ShortUniqueId({ length: 10 });
+  let notes = req.body;
+  const notesArray = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../../db/db.json'))
+  );
+  notes.id = uid();
+  notesArray.push(notes);
+  fs.writeFileSync(
+    path.join(__dirname, '../../db/db.json'),
+    JSON.stringify({ notesArray })
+  );
+  res.json({ success: true, data: notesArray });
 };
 const deleteNote = (req, res) => {
-  // controller logic
   res.json({ message: 'deleteNote controller has been reached' });
 };
 module.exports = {

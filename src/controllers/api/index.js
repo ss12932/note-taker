@@ -15,7 +15,7 @@ const postNewNote = (req, res) => {
   notesArray.push(notes);
   fs.writeFileSync(
     path.join(__dirname, '../../db/db.json'),
-    JSON.stringify({ notesArray })
+    JSON.stringify(notesArray)
   );
   res.json({ success: true, data: notesArray });
 };

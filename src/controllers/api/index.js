@@ -17,7 +17,7 @@ const postNewNote = (req, res) => {
     path.join(__dirname, '../../db/db.json'),
     JSON.stringify(notesArray)
   );
-  res.json({ success: true, data: notesArray });
+  res.json(notesArray);
 };
 const deleteNote = (req, res) => {
   res.json({ message: 'deleteNote controller has been reached' });
